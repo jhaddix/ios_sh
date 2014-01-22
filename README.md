@@ -1,9 +1,12 @@
-ios_sh
+ios.sh
 ======
 
-ios source grepper
+iOS Source Grepper
 
-drop in your project file folder to identify lines of code that should be inspected for:
+Drop in your project file folder to identify lines of code that should be inspected for:
+
+
+
 
 HTTP or Webview calls
 
