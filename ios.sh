@@ -97,6 +97,7 @@ grep -r -F 'strcpy' $pp |grep -a -v 'svn'|grep -v binary|sort -u
 grep -r -F 'strncat' $pp |grep -a -v 'svn'|grep -v binary|sort -u
 grep -r -F 'strncpy' $pp |grep -a -v 'svn'|grep -v binary|sort -u
 grep -r -F 'sprintf' $pp |grep -a -v 'svn'|grep -v binary|sort -u
+grep -r -F 'system' $pp |grep -a -v 'svn'|grep -v binary|sort -u
 grep -r -F 'vsprintf' $pp |grep -a -v 'svn'|grep -v binary|sort -u
 grep -r -F 'fopen ' $pp |grep -a -v 'svn'|grep -v binary|sort -u
 grep -r -F 'gets(' $pp |grep -a -v 'svn'|grep -v binary|sort -u
