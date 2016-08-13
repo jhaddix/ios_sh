@@ -18,13 +18,13 @@ echo "# HTTP(s) Calls:                                                      #"
 echo "#######################################################################"
 echo ""
 grep -r -a "://" $pp | awk -F "http" '{print $2}'|grep -a -v 'svn' |sort -u
-grep -H -i -n  -C2 "openUrl\|handleOpenURL"
+grep -H -i -n -r -C2 "openUrl\|handleOpenURL" $pp
 echo ""
 echo "#######################################################################"
 echo "# Project Calls or Imports sqlite in the following files:             #"
 echo "#######################################################################"
 echo ""
-grep -r -a -F "sqlite" $pp |grep -a -v 'svn'|cut -d ":" -f1| sort -u 
+grep -r -a -F "sqlite" $pp |grep -a -v 'svn'|cut -d ":" -f1| sort -u
 echo ""
 echo "#######################################################################"
 echo "# Check for SQLi (%@ and no ? in SQL Statement):             #"
@@ -41,52 +41,52 @@ echo "#######################################################################"
 echo "# Password References:                                                #"
 echo "#######################################################################"
 echo ""
-grep -r -F 'password' $pp |grep -a -v svn| sort -u 
+grep -r -F 'password' $pp |grep -a -v svn| sort -u
 echo ""
 echo "#######################################################################"
 echo "# Logging:                                                            #"
 echo "#######################################################################"
 echo ""
-grep -r -F 'NSLog' $pp |grep -a -v svn| sort -u 
+grep -r -F 'NSLog' $pp |grep -a -v svn| sort -u
 echo ""
 echo "#######################################################################"
 echo "# Encryption/Encoding Checks                                          #"
 echo "#######################################################################"
 echo ""
-echo "******Is 3rd party database encryption used?******" 
-echo "" 
+echo "******Is 3rd party database encryption used?******"
+echo ""
 grep -r -a -F 'sqlcipher' $pp |grep -a -v 'svn'|sort -u
-grep -r -a -F 'CEROD' $pp |grep -a -v 'svn'|sort -u 
+grep -r -a -F 'CEROD' $pp |grep -a -v 'svn'|sort -u
 echo ""
-echo "******Keychain used in: ******" 
+echo "******Keychain used in: ******"
 echo ""
-grep -r -a -F 'kSecASttr' $pp |grep -a -v 'svn'|cut -d ":" -f1| sort -u 
-grep -r -a -F 'SFHFKkey' $pp |grep -a -v 'svn'|cut -d ":" -f1| sort -u 
+grep -r -a -F 'kSecASttr' $pp |grep -a -v 'svn'|cut -d ":" -f1| sort -u
+grep -r -a -F 'SFHFKkey' $pp |grep -a -v 'svn'|cut -d ":" -f1| sort -u
 echo ""
-echo "******Weak SSL Configuration******" 
+echo "******Weak SSL Configuration******"
 echo ""
-grep -r -a -F "setAllowsAnyHTTPSCertificate" $pp 
-grep -r -a -F "continueWithoutCredentialForAuthenticationChallenge" $pp 
+grep -r -a -F "setAllowsAnyHTTPSCertificate" $pp
+grep -r -a -F "continueWithoutCredentialForAuthenticationChallenge" $pp
 grep -r -a -F "kCFStreamSSLAllowsExpiredCertificates" $pp
 grep -r -a -F "kCFStreamSSLAllowsExpiredRoots" $pp
 grep -r -a -F "kCFStreamSSLAllowsAnyRoot" $pp
 echo ""
-echo "******Data over HTTP******" 
+echo "******Data over HTTP******"
 echo ""
-grep -H -i -n -e  "http://" $pp
-grep -H -i -n  -e "NSURL" $pp
-grep -H -i -n  -e "URL"
-grep -H -i -n  -e "writeToUrl" $pp
-grep -H -i -n  -e "NSURLConnection" $pp
-grep -H -i -n -C2 "CFStream"
-grep -H -i -n  -C2 "NSStreamin" $pp
+grep -H -i -n -e "http://" -r $pp
+grep -H -i -n -e "NSURL" -r $pp
+grep -H -i -n  -e "URL" -r $pp
+grep -H -i -n  -e "writeToUrl" -r $pp
+grep -H -i -n  -e "NSURLConnection" -r $pp
+grep -H -i -n -C2 "CFStream" -r $pp
+grep -H -i -n  -C2 "NSStreamin" -r $pp
 echo ""
-echo "******Handling queries with sqlite3_prepare()******" 
+echo "******Handling queries with sqlite3_prepare()******"
 grep -r -a "sqlite3_prepare(" $pp
 echo ""
 echo "******Base64, MD5 Encoding******"
 grep -r -F "base64" $pp |sort -u
-grep -H -i -n  -e "MD5" $pp
+grep -H -i -n  -e "MD5" -r $pp
 echo ""
 echo "#######################################################################"
 echo "# Vuln C calls or functions to avoid:                                 #"
@@ -115,9 +115,9 @@ echo "#######################################################################"
 echo "# Possible Obj-C Format String methods in:                            #"
 echo "#######################################################################"
 echo ""
-egrep -r "NSLog[^\"']*(,|\))" $pp |grep -a -v 'svn'|grep -a -v 'Binary'|sort -u 
-egrep -r "stringWithFormat[^\"']*(,|])" $pp |grep -a -v 'svn'|grep -a -v 'Binary'|sort -u 
-egrep -r "initWithFormat[^\"']*(,|\])" $pp |grep -a -v 'svn'|grep -v 'Binary'|sort -u 
+egrep -r "NSLog[^\"']*(,|\))" $pp |grep -a -v 'svn'|grep -a -v 'Binary'|sort -u
+egrep -r "stringWithFormat[^\"']*(,|])" $pp |grep -a -v 'svn'|grep -a -v 'Binary'|sort -u
+egrep -r "initWithFormat[^\"']*(,|\])" $pp |grep -a -v 'svn'|grep -v 'Binary'|sort -u
 egrep -r "appendFormat[^\"']*(,|\])" $pp |grep -a -v 'svn'|grep -a -v 'Binary'|sort -u
 egrep -r "informativeTextWithFormat[^\"']*(,|\])" $pp |grep -a -v 'svn'|grep -a -v 'Binary'|sort -u
 egrep -r "predicateWithFormat[^\"']*(,|\])" $pp |grep -a -v 'svn'|grep -a -v 'Binary'|sort -u
