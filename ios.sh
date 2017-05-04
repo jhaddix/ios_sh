@@ -35,7 +35,7 @@ grep -r -H -i -n -e "delete" $pp
 grep -r -H -i -n  -e "select" $pp
 grep -r -H -i -n  -e "table" $pp
 grep -r -H -i -n -e "cursor" $pp
-grep -r -H -i -n -v "import" $pp
+grep -r -H -i -n -e "import" $pp
 echo ""
 echo "#######################################################################"
 echo "# Password References:                                                #"
